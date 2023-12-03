@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="~/fruitkha-1.0.0/assets/img/logo.png">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="~/fruitkha-1.0.0/assets/css/all.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/fruitkha-1.0.0/assets/bootstrap/css/bootstrap.min.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="~/fruitkha-1.0.0/assets/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="~/fruitkha-1.0.0/assets/css/magnific-popup.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="~/fruitkha-1.0.0/assets/css/animate.css">
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="~/fruitkha-1.0.0/assets/css/meanmenu.min.css">
+    <!-- main style -->
+    <link rel="stylesheet" href="~/fruitkha-1.0.0/assets/css/main.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="~/fruitkha-1.0.0/assets/css/responsive.css">
+</head>
+<body>
+
+    <!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+    <!-- header -->
+    <div class="top-header-area  " id="sticker">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <div class="main-menu-wrap">
+                        <!-- logo -->
+                        <div class="site-logo">
+                            <a href="/Home/Index">
+                                <img style="background-color:transparent" src="" alt="">
+                            </a>
+
+                        </div>
+                        <!-- logo -->
+                        <!-- menu start -->
+                        <nav class="main-menu">
+                            <ul>
+                                <li class="current-list-item">
+                                    <a href="/Home/Index">Anasayfa</a>
+                                </li>
+
+                                <li>
+                                    <a href="~/Home/About">Hakkında</a>
+                                </li>
+
+                                <li>
+                                    <a href="~/Home/Iletisim">İletişim</a>
+                                </li>
+
+                                <li>
+                                    <a href="/Product/Index">Alışveriş</a>
+                                </li>
+
+
+                               
+
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>
+                                        <a asp-action="OrderDetails" asp-controller="OrderDetails">Geçmiş Siparişler</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a class="shopping-cart" href="/Product/CreateCart"><i class="fas fa-shopping-cart text-white"></i></a>
+
+                                    </li>
+                                    <li>
+
+                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search text-white"></i></a>
+                                    </li>
+
+
+
+                                   @*  <ul class="sub-menu text-white">
+
+                                        <li>
+                                            <a href="#" class="menu-item"><i class="fas fa-bars"></i></a>
+                                        </li> *@
+
+
+                                           <li>
+                                            <a asp-action="UserUpdate" asp-controller="User">Bilgilerimi Güncelle</a>
+                                        </li>
+
+
+                                        <li>
+                                            <a asp-action="Logout" asp-controller="Account">Logout</a>
+                                        </li>
+
+
+
+                                    @* </ul> *@
+
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a class="shopping-cart" href="/Account/Login">Login <i class="fas fa-user text-white"></i></a>
+                                    </li>
+                                }
+                            </ul>
+
+                            @*  <div class="header-icons"> *@
+
+                            @* </div> *@
+
+
+                            <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                            <div class="mobile-menu"></div>
+                            <!-- menu end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header -->
+    @RenderBody()
+    <!-- search area -->
+    <div class="search-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                    <div class="search-bar">
+                        <div class="search-bar-tablecell">
+                            <h3>Search For:</h3>
+                            <input type="text" placeholder="Keywords">
+                            <button type="submit">Search <i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-box about-widget">
+                        <h2 class="widget-title">Hakkımızda</h2>
+                        <p>FÖHM, hamburger dünyasında fark yaratmayı amaçlayan bir marka olarak, özenle seçilmiş malzemelerle hazırlanan eşsiz tarifler sunuyor. İster klasik bir cheeseburger isteyin, ister özel bir FÖHM lezzeti deneyin, her bir hamburgerimiz özel soslar ve taze malzemelerle harmanlanarak sizlere sunuluyor.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-box get-in-touch">
+                        <h2 class="widget-title">İletişim</h2>
+                        <ul>
+                            <li>Caferağa, Mühürdar Cd. No:76, 34710 Kadıköy/İstanbul</li>
+                            <li>FÖHM@gmail.com</li>
+                            <li>+09 216 347 21 21</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-box pages">
+                        <h2 class="widget-title">İçindekiler</h2>
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">AnaSayfa</a></li>
+                            <li><a href="~/Home/About">Hakkında</a></li>
+                            <li><a href="services.html">Alışveriş</a></li>
+                            <li><a asp-controller="Home" asp-action="Iletisim">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+                @*   <div class="col-lg-3 col-md-6">
+                <div class="footer-box subscribe">
+                <h2 class="widget-title">İletişime Geçin</h2>
+                <p>Degerlendirme için Email gönderebilirsiniz</p>
+                <form action="index.html">
+                <input type="email" placeholder="Email">
+                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+                </div> *@
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- end footer -->
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <p>
+                        Copyrights &copy; 2023 - <br />
+                        Mehmet Çatmakaşlı,Ömer Alp Kazkayası,Furkan Altınbarın,Hakan Toraman <br />
+                        Her hakkı saklıdır.<br>
+                    </p>
+                </div>
+                <div class="col-lg-6 text-right col-md-12">
+                    <div class="social-icons">
+                        <ul>
+                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end copyright -->
+    <!-- jquery -->
+    <script src="~/fruitkha-1.0.0/assets/js/jquery-1.11.3.min.js"></script>
+    <!-- bootstrap -->
+    <script src="~/fruitkha-1.0.0/assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- count down -->
+    <script src="~/fruitkha-1.0.0/assets/js/jquery.countdown.js"></script>
+    <!-- isotope -->
+    <script src="~/fruitkha-1.0.0/assets/js/jquery.isotope-3.0.6.min.js"></script>
+    <!-- waypoints -->
+    <script src="~/fruitkha-1.0.0/assets/js/waypoints.js"></script>
+    <!-- owl carousel -->
+    <script src="~/fruitkha-1.0.0/assets/js/owl.carousel.min.js"></script>
+    <!-- magnific popup -->
+    <script src="~/fruitkha-1.0.0/assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- mean menu -->
+    <script src="~/fruitkha-1.0.0/assets/js/jquery.meanmenu.min.js"></script>
+    <!-- sticker js -->
+    <script src="~/fruitkha-1.0.0/assets/js/sticker.js"></script>
+    <!-- form validation js -->
+    <script src="~/fruitkha-1.0.0/assets/js/form-validate.js"></script>
+    <!-- main js -->
+    <script src="~/fruitkha-1.0.0/assets/js/main.js"></script>
+
+</body>
+</html>

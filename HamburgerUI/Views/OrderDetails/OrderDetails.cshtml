@@ -1,0 +1,48 @@
+﻿@using Entities.DTOs;
+@model List<UserOrderDetailsDTO>
+
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                  
+                    <h1>Geçmiş Siparişler</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="row justify-content-center">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body" style="background-color:orange">
+                    <h5 class="card-title">Sipariş Tarihi: @item.CreateDate</h5>
+                    @foreach (var orderDetail in item.OrderDetailsWithProductNames)
+                    {
+                        <p class="card-text">
+                            Ürün Adı: @orderDetail.ProductName
+                            <br />
+                            Adet: @orderDetail.Quantity
+                            <br />
+                            Çıkarılan Malzemeler: @orderDetail.RemoverIngredient
+                        </p>
+                    }
+                    <p>
+                        @* @item.CreateDate *@
+                        <br />
+                        Toplam Tutar: @item.TotalPrice
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

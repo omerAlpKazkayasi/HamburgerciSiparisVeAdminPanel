@@ -1,0 +1,50 @@
+﻿@using HamburgerUI.Areas.Admin.Models.VMs;
+ @model MenuCreateVM
+@{
+    ViewData["Title"] = "HamburgerAdd";
+    Layout = "~/Areas/Admin/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <img src="~/fruitkha-1.0.0/assets/img/logo.png" alt="Logo" class="mb-4 img-fluid" />
+                    <h2 class="card-title text-center mb-4">Yeni Menü Ekle</h2>
+                    <form method="post" enctype="multipart/form-data" action="@Url.Action("MenuAdd", "Menu")">
+                        <div class="mb-3">
+                            <label for="menuAdi" class="form-label" asp-for="Product.ProductName">Menu Adı:</label>
+                            <input type="text" asp-for="Product.ProductName" class="form-control" required />
+                            <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+                          
+                        </div>
+                        <div class="mb-3">
+                            <label for="fiyat" class="form-label" asp-for="Product.Price">Fiyat:</label>
+                            <input type="number" class="form-control" asp-for="Product.Price" required />
+                              <span asp-validation-for="Product.Price" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                           <label for="menuAdi" class="form-label" asp-for="Product.ImagePath">Resim Yolu</label>
+                            <input type="text" asp-for="Product.ImagePath" class="form-control" required />
+                              <span asp-validation-for="Product.ImagePath" class="text-danger"></span>
+                        </div>
+                        <div id="ingredientsCheckboxList">
+
+                            @foreach (var item in Model.Ingredients)
+                            {
+                                <input type="checkbox" name="selectedIngredients" value="@item.Value" />
+
+                                @item.Text
+                                <span class="selected-ingredient" style="display:none;"></span>
+                            }
+                        </div>
+                        <div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

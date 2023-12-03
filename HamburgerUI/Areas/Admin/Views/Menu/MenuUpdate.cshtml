@@ -1,0 +1,56 @@
+﻿@using HamburgerUI.Areas.Admin.Models.VMs;
+ @model MenuUpdateVM
+@{
+    ViewData["Title"] = "MenuUpdate";
+    Layout = "~/Areas/Admin/Shared/_AdminLayout.cshtml";
+}
+
+<h1>MenuUpdate</h1>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <img src="~/fruitkha-1.0.0/assets/img/logo.png" alt="Logo" class="mb-4 img-fluid" />
+                    <h2 class="card-title text-center mb-4">Menü Güncelle</h2>
+                    <form method="post" enctype="multipart/form-data" action="@Url.Action("MenuUpdate", "Menu")">
+                        <input type="hidden" name="ID" asp-for="ProductDetails.ProductID" />
+                        <div class="mb-3">
+                            <label asp-for="ProductDetails.ProductName" class="control-label"></label>
+                            <input asp-for="ProductDetails.ProductName" class="form-control" />
+                            <span asp-validation-for="ProductDetails.ProductName" class="text-danger"></span>
+                           
+                        </div>
+                        <div class="mb-3">
+
+                            <label asp-for="ProductDetails.ProductPrice" class="control-label"></label>
+                            <input asp-for="ProductDetails.ProductPrice" class="form-control" />
+                            <span asp-validation-for="ProductDetails.ProductPrice" class="text-danger"></span>
+                           
+                        </div>
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Fotoğraf:</label>
+                            <input type="file" name="Foto" id="foto" class="form-control" />
+                        </div>
+                        <div id="ingredientsCheckboxList">
+
+                            <div id="ingredientsCheckboxList">
+                                @foreach (var item in Model.Ingredients)
+                                {
+                                    <input type="checkbox" name="selectedIngredients" value="@item.Value" @(Model.ProductDetails.Ingredients.Any(i => i.IngredientName == item.Text) ? "checked" : "") />
+                                    @item.Text
+                                    <span class="selected-ingredient" style="display:none;"></span>
+                                }
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+ 

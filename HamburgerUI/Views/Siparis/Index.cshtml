@@ -1,0 +1,15 @@
+﻿@using Entities.Concrete;
+@model List<Product>
+
+@foreach (var item in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Ürünler</h5>
+            <p class="card-text">@item.ProductName</p>
+            <p class="card-text">@item.Price</p>
+            <a asp-action="Sepet" asp-route-id="@item.ProductId" class="btn btn-primary">Sepete Ekle</a>
+        </div>
+    </div>
+}

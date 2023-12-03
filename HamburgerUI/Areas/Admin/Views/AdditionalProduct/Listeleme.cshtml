@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "MenuListele";
+    Layout = "~/Areas/Admin/Shared/_AdminLayout.cshtml";
+}
+
+@using Entities.Concrete;
+@model List<Product>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Şekilli Tablo</title>
+    <style>
+        .custom-table {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+            .custom-table thead th {
+                background-color: #007bff;
+                color: #fff;
+                border-color: #007bff;
+            }
+
+            .custom-table tbody td {
+                background-color: #fff;
+            }
+
+        .custom-btn-edit {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #212529;
+        }
+
+        .custom-btn-delete {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Ek Ürün</h2>
+        <div class="table-responsive">
+            <table class="table custom-table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">İsim</th>
+                        <th scope="col">Fiyat</th>
+                        <th scope="col" class="text-center">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.ProductName</th>
+                            <td>@item.Price</td>
+
+                            <td class="text-center">
+                                <form method="get" asp-action="AdditionalProductUpdate" asp-controller="AdditionalProduct">
+                                    <input type="hidden" name="id" value="@item.ProductId" />
+                                    <button type="submit" class="btn btn-warning btn-sm custom-btn-edit mr-2">Güncelle</button>
+                                </form>
+                                <form method="post" asp-action="AdditionalDelete" asp-controller="AdditionalProduct">
+                                    <input type="hidden" name="id" value="@item.ProductId" />
+                                    <button type="submit" class="btn btn-danger btn-sm custom-btn-delete">Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

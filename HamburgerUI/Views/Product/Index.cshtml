@@ -1,0 +1,146 @@
+﻿@using System.Linq
+@using Entities.Concrete
+@model List<Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Mutlu Alışverişler</p>
+                    <h1>Alışveriş</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@{
+    var groupedProducts = Model.GroupBy(p => p.ProductName);
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-10 text-center">
+        <div class="row">
+            @foreach (var group in groupedProducts)
+            {
+
+                var productName = group.Key;
+                var products = group.ToList();
+                var sizeIdExists = products.Any(p => p.SizeId > 0);
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img class="img-fluid" style="width: 300px; height: 200px;" src="@products.FirstOrDefault()?.ImagePath" alt=""></a>
+                        </div>
+                        <h3>@products.FirstOrDefault()?.ProductName</h3>
+                        <p>@products.FirstOrDefault()?.Category.CategoryName</p>
+                        <h3 class="product-price"><span>@products.FirstOrDefault()?.Price</span>₺</h3>
+                        @if (sizeIdExists)
+                        {
+                            <p>Boyut Seçiniz</p>
+                            <select type="button" class="btn btn-success size-dropdown">
+                                @foreach (var product in products.Where(p => p.SizeId > 0))
+                                {
+                                    <option value="@product.ProductId" data-product-id="@product.ProductId" data-size-id="@product.SizeId">
+                                        @{
+                                            if (product.SizeId == 1)
+                                            {
+                                                @:Küçük
+                                            }
+                                            else if (product.SizeId == 2)
+                                            {
+                                                @:Orta
+                                            }
+                                            else if (product.SizeId == 3)
+                                            {
+                                                @:Büyük
+                                            }
+                                        }
+                                    </option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <span></span>
+                        }
+
+                        @if (sizeIdExists)
+                        {
+                            <a href="#" class="cart-btn add-to-cart-no-size"><i class="fas fa-shopping-cart"></i>Sepete Ekle</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="cart-btn add-to-cart-no-size" data-product-id="@products.FirstOrDefault()?.ProductId"><i class="fas fa-shopping-cart"></i>Sepete Ekle</a>
+                        }
+                    </div>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var addToCartButtons = document.querySelectorAll('.add-to-cart-no-size');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var productId = this.closest('.single-product-item').querySelector('.size-dropdown').value;
+
+            // Product ID'yi URL'de göndererek SepeteEkle action'ına yönlendir
+            window.location.href = `/Product/SepeteEkle?id=${productId}`;
+        });
+    });
+
+    var sizeDropdowns = document.querySelectorAll('.size-dropdown');
+    sizeDropdowns.forEach(dropdown => {
+        dropdown.addEventListener('change', function () {
+            var productId = this.options[this.selectedIndex].getAttribute('data-product-id');
+            var priceElement = this.closest('.single-product-item').querySelector('.product-price span');
+
+            fetch(`/Product/${productId}/price`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(price => {
+                    var formattedPrice = parseFloat(price).toFixed(2);
+                    priceElement.innerText = formattedPrice;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        });
+    });
+</script>
+
+
+
+<script>
+    var addToCartNoSizeButtons = document.querySelectorAll('.add-to-cart-no-size');
+    addToCartNoSizeButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var productId = this.getAttribute('data-product-id');
+
+            // Product ID'yi URL'de göndererek SepeteEkle action'ına yönlendir
+            window.location.href = `/Product/SepeteEkle?id=${productId}`;
+        });
+    });
+</script>

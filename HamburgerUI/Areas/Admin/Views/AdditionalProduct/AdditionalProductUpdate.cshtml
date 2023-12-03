@@ -1,0 +1,124 @@
+﻿@using Entities.DTOs;
+@*@model Entities.Concrete.Product
+
+@{
+    ViewData["Title"] = "AdditionalProductUpdate";
+    Layout = "~/Areas/Admin/Shared/_AdminLayout.cshtml";
+}
+
+<h1>AdditionalProductUpdate</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdditionalProductUpdate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="ID" value="@Model.ProductId" />
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <input asp-for="CategoryId" class="form-control" />
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SizeId" class="control-label"></label>
+                <input asp-for="SizeId" class="form-control" />
+                <span asp-validation-for="SizeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+
+@model ProductUpdateDTO
+
+@{
+    ViewData["Title"] = "AdditionalProductUpdate";
+    Layout = "~/Areas/Admin/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<script>
+    // You can add JavaScript for additional interactivity here
+    // For example, client-side validation or other dynamic behavior
+</script>
+
+<h1>AdditionalProductUpdate</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+
+        <form asp-action="AdditionalProductUpdate" class="needs-validation" novalidate>
+              <input type="hidden"asp-for="ProductId" class="form-control" />
+              <input type="hidden"asp-for="CategoryId" class="form-control" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           @* <input type="hidden" name="ID" value="@Model.ProductId" />*@
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" required />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" required />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                             <label for="menuAdi" class="form-label" asp-for="ImagePath">Menu Adı:</label>
+
+                            <input type="text" asp-for="ImagePath" class="form-control" required />
+                            <span asp-validation-for="ImagePath" class="text-danger"></span>
+             </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+<script>
+    // Example: You can add additional JavaScript for client-side validation or other dynamic behavior here
+    // For example, using JavaScript or jQuery to enhance the user experience.
+</script>

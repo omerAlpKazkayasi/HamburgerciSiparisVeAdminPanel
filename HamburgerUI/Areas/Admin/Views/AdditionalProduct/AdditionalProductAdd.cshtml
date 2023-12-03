@@ -1,0 +1,47 @@
+﻿@using Entities.DTOs;
+@using HamburgerUI.Areas.Admin.Models.VMs;
+@model AdditionalAddDTO
+@{
+    ViewData["Title"] = "AdditionalProductAdd";
+    Layout = "~/Areas/Admin/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <img src="~/fruitkha-1.0.0/assets/img/logo.png" alt="Logo" class="mb-4 img-fluid" />
+                    <h2 class="card-title text-center mb-4">Ek Ürün Ekle</h2>
+                    <form method="post" enctype="multipart/form-data" action="@Url.Action("AdditionalProductAdd", "AdditionalProduct")">
+                        <div class="mb-3">
+                            <label for="menuAdi" class="form-label" asp-for="ProductName">Menu Adı:</label>
+
+                            <input type="text" asp-for="ProductName" class="form-control" required />
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                            
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="fiyat" class="form-label" asp-for="Price">Fiyat:</label>
+
+                            <input type="number" class="form-control" asp-for="Price" required />
+                             <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                             <label for="menuAdi" class="form-label" asp-for="ImagePath">Menu Adı:</label>
+
+                            <input type="text" asp-for="ImagePath" class="form-control" required />
+                            <span asp-validation-for="ImagePath" class="text-danger"></span>
+                        </div>
+                        <div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
